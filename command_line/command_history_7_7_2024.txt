@@ -1,0 +1,252 @@
+    1  WSL
+    2  ls
+    3  mkdir kuul
+    4  ls
+    5  rm -rf test
+    6  ls
+    7  ch Desk
+    8  cd Desk
+    9  cd ~/Desk
+   10  cd ~/Desktop/
+   11  ls
+   12  O ~ihs Documents/
+   13  cd ~Documents/
+   14  cd ~/Documents/
+   15  ls
+   16  cd ~/Directory/
+   17  cd ~/Goda9ra nigeria/
+   18  cd ~/Gosa9ra/
+   19  cd ~/Desktop/
+   20  ls
+   21  ~uk folder
+   22  cd ~/Downloads/
+   23  ls
+   24  cd ~/Desktop/
+   25  ls
+   26  cd ~/Documents/
+   27  ls
+   28  mddir Datakuul
+   29  mkdir datakuul
+   30  ls
+   31  cd ~/Desktop/
+   32  ls
+   33  cd -
+   34  cd -
+   35  cd -
+   36  ls
+   37  cd -
+   38  ls
+   39  find -name "letter*"
+   40  open 'Obi Owuasu (PDF) Final Draft.docx'
+   41  clear
+   42  ls
+   43  open 'Obi Owuasu (PDF) Final Draft.docx'
+   44  ls
+   45  open [200~"Biodun's Power BI Training"/~
+   46  open 'ADEKEMI UBA-OWUASU MBA DISSERTATION .docx'
+   47  open ADEKEMI UBA-OWUASU MBA DISSERTATION 
+   48  find . -name "obi's cv*"
+   49  find . -name "obi's cv*"
+   50  open obi's cv
+   51  find . -name "*.pdf"
+   52  rm -rf obi;s cv
+   53  cd -
+   54  $ open obi's cv
+   55  rm -rf obi" cv
+   56  rm -rf obi" cv
+   57  rm -rf obi's cv
+   58  clear
+   59  WSLclear
+   60  ls
+   61  cd -
+   62  clear
+   63  git clone https://github.com/Owuasu/owuasu.git
+   64  mkdir owuasu
+   65  cd ~owuasu
+   66  mkdir datakuul
+   67  git clone https://github.com/Owuasu/owuasu.git
+   68  cd ~datakuul
+   69  cd datakuul
+   70  cd owuasu
+   71  git clone https://github.com/Owuasu/owuasu.git/datakull.git
+   72  git clone https://github.com/Owuasu/owuasu.git/datakuul.git
+   73  cd .
+   74  mkdir Owuasu
+   75  git clone https://github.com/Owuasu/owuasu.git/datakull.git
+   76  cd Owuasu/
+   77  cd -
+   78  cd -
+   79  cd -
+   80  ls
+   81  cd -
+   82  ls
+   83  cd -
+   84  cd ;2~
+   85  cd ~
+   86  cd ~
+   87  cd -
+   88  cd -
+   89  cd owuasu/
+   90  ls
+   91  cd ~/datakuul/Owuasu/
+   92  git add Read git add Read
+   93  git add README.md
+   94  nano ReadMe.md
+   95  ls
+   96  cd ~/datakuul/
+   97  cd ~/datakuul/Owuasu/
+   98  ls
+   99  cd ~/datakuul/
+  100  ls
+  101  cd ~/datakuul/Owuasu/
+  102  ls
+  103  git push origin main~
+  104  git push ReadMe.md
+  105  git push main
+  106  git push ~/datakuul/Owuasu/
+  107  cd ~/datakuul/Owuasu/
+  108  git push
+  109  ls
+  110  git push
+  111  git push ReadMe.md
+  112  git push ReadMe.md
+  113  git push ~/datakuul/Owuasu/ReadMe.md
+  114  git push ~/datakuul/Owuasu
+  115  git push ~/datakuul/Owuasu
+  116  git push ~/datakuul/Owuasu/ReadMe.md
+  117  git push
+  118  cd
+  119  git push
+  120  git add
+  121  git add ReadMe.md
+  122  git status
+  123  cd owuasu/
+  124  ls
+  125  cd ~
+  126  ls
+  127  mv README.md owuasu/
+  128  ls
+  129  ls owuasu/
+  130  cd owuasu/
+  131  ls 
+  132  nano README.md 
+  133  git status
+  134  git add README.md 
+  135  git status
+  136  git comit
+  137  git commit
+  138  git commit -m
+  139  git commit -m "Experimenting"
+  140  git status
+  141  git remote show origin
+  142  git push --set-upstream origin main
+  143  git push --set-upstream origin main
+  144  ls
+  145  cd owuasu/
+  146  ls
+  147  nano README.md 
+  148  git status
+  149  git add README.md 
+  150  git status
+  151  git commit
+  152  gir commit -m
+  153  git commit -m
+  154  git commi
+  155  git commit
+  156  git commit -m "README.md" 
+  157  git status
+  158  git commit
+  159  git commit -m
+  160  nano README.md 
+  161  git status
+  162  git add README.md 
+  163  git status
+  164  git commit -m "A guide from Dr. Ed"
+  165  status
+  166  git status
+  167  git remote show origin
+  168  git push --set-upstream origin main
+  169  mkdir command_line, git_github, r, python and SQL
+  170  status
+  171  mkdir command_line, git_github, r, python and SQL
+  172  git status
+  173  git add command_line, git_github, r, python and SQL
+  174  git status
+  175  mkdir command_line/what-I-have-learnt-so-far.doc
+  176  ls
+  177  mkdir command_line
+  178  nano 
+  179  mkdir command_line/what-I-have-learnt-so-far.doc
+  180  nano
+  181  mkdir command_line
+  182  nano what-I-have-learnt-so-far.doc
+  183  nano command_line/what-I-have-learnt-so-far.doc
+  184  nano what-I-have-learnt-so-far.doc
+  185  cd command_line
+  186  nano command_line/what-I-have-learnt-so-far.doc
+  187  mkdir command_line
+  188  status
+  189  cd .
+  190  ls
+  191  cd command_line/
+  192  cd command_line/what-I-have-learnt-so-far.doc
+  193  nano 
+  194  nano command_line/what-I-have-learnt-so-far.doc
+  195  mkdir command_line
+  196  nano ommand_line.doc
+  197  status
+  198  nano ommand_line.doc
+  199  cd command_line/
+  200  status
+  201  cd command_line/
+  202  git add command_line
+  203  git add ommand_line.doc
+  204  nano ommand_line.doc
+  205  git status
+  206  git add command_line 
+  207  git add command_line (main)
+  208  git add command_line 
+  209  git status
+  210  git add
+  211  git add command_line.doc
+  212  nano ommand_line.doc
+  213  nano command_line.doc
+  214  pwd
+  215  ls
+  216  ls datakuul/
+  217  ls datakuul/Owuasu/
+  218  mv datakuul/ learning_git
+  219  ls
+  220  git clone https://github.com/Owuasu/Datakuul.git
+  221  ls
+  222  cd datakuul
+  223  ls
+  224  cd -
+  225  ls
+  226  ls Datakuul/
+  227  ls
+  228  cd Datakuul/
+  229  mkdir command_line git_github r python SQL
+  230  ls
+  231  git status
+  232  nano README.md 
+  233  git status
+  234  git add.
+  235  git add .
+  236  git commit -m "refresher"
+  237  git push
+  238  cd command_line/
+  239  ls
+  240  cd command_line/
+  241  nano what-I-have-learnt-so-far.doc
+  242  ls
+  243  touch what-I-have-learnt-so-far.doc
+  244  ls
+  245  nano what-I-have-learnt-so-far.doc 
+  246  ls
+  247  git add
+  248  git add .
+  249  git commit -m "confirmation of learning"
+  250  git push
+  251  history
+  252  history > command_history_7_7_2024.txt
