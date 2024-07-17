@@ -1,0 +1,20 @@
+
+In GitHub, i learnt this is for control versioning. cd my f12 is to go back to home directory, cd . is to go back to my current folder, cd - is to go back to my previous directory or folder, ls | wc is to list the word count>
+
+which git is to find out if you have a folder and configure the git to your name. Here we also used git config --global user.name "owuasu" to name my git hub, git config --global user.email "ubaobi71@gmail.com" was used to s>
+
+from the github page, to create a folder, put user name, make public and create repository. To create a folder or repository, go to repository and click on new or anywhere you see new. create user name as datakuul, make publ>
+
+mv is used to rename a file e.g besults.pdf to results.pdf, you will use mv besults.pdf resuls.pdf.
+
+tilda is used to represent the home directory
+
+the directory which can create correctly a subdirectory within a directory is -p. e.g my_work/results/  you will use mkdir -p my_work/results
+
+the difference between "rm" and "rm -rf" as remove commands is that rm can only delete files, while rm -rf can delete both files and directories
+
+The command to copy a github repository to the local machine, laptop or terminal is git clone.
+
+the command used to push changes from a local repository to a remote repository in github is git push.
+
+the touch bash commmand helps to create an emopty file without allowing editing, but nano both vreates and edit.
