@@ -18,3 +18,32 @@ The command to copy a github repository to the local machine, laptop or terminal
 the command used to push changes from a local repository to a remote repository in github is git push.
 
 the touch bash commmand helps to create an emopty file without allowing editing, but nano both vreates and edit.
+
+command line for github;
+
+ cd ~/Datakuul/
+  553  ls
+  554  cd git_github/
+  555  nano what_i_have_learnt_so_far.txt
+  556  nano what_i_have_learnt_so_far.txt
+  557  nano what_i_have_learnt_so_far.txt
+  558  nano what_i_have_learnt_so_far.txt
+  559  nano what_i_have_learnt_so_far.txt
+  560  nano what_i_have_learnt_so_far.txt
+  561  nano what_i_have_learnt_so_far.txt
+  562  ~/git_github/
+  563  cd ~/git_github/
+  564  nano what_i_have_learnt_so_far.txt
+  565  cd ~/Datakuul/
+  566  ls
+  567  cd git_github/
+  568  cd git_github/
+  569  cd git_github/
+  570  ls
+  571  nano what_i_have_learnt_so_far.doc
+  572  add .
+  573  git add .
+  574  git commit -m "my_improved_understanding_of_git_github"
+  575  git push
+  576  history
+
