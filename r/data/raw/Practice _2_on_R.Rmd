@@ -1,0 +1,65 @@
+---
+title: "TESTING"
+output: html_document
+date: "2024-07-14"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+ 
+```
+```{r}
+round(0.02702703)
+```
+```{r}
+
+```
+
+
+```{r cars}
+summary(cars)
+```
+```{r}
+round (digits = 3)
+```
+```{r}
+height <- c(1.6, 1.5, 1.9, 2)
+```
+```{r}
+height[2]
+```
+```{r}
+height[2:4]
+```
+```{r}
+height [2:3]
+```
+```{r}
+student_names <- c("Jude", "Ope", "Kunle", "James")
+```
+```{r}
+student_names <- c("Jude", "Ope", "Kunle", "James", "Charles", "Mark")
+```
+
+```{r}
+student_names
+```
+```{r}
+student_names [3]
+```
+```{r}
+student_names [5]
+```
+```{r}
+install.packages("tidyverse")
+```
+```{r}
+library(tidyverse)
+```
+```{r}
+gapminder2010 <- read_csv("gapminder1960to2010_socioeconomic.csv na = '') 
+```
+
