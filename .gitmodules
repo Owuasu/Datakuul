@@ -1,0 +1,3 @@
+[submodule "learn_python"]
+	path = learn_python
+	url = https://github.com/Owuasu/Datakuul.git
