@@ -1,0 +1,204 @@
+---
+title: "MOVIELENS PROJECT"
+author: "Obi"
+date: "2024-09-14"
+output: html_document
+---
+
+
+MovieLens is a US based company in the internet and entertainment domain that has an online database of information related to films, television series, online streaming content – including cast, production crew, trivia, ratings, and fan and critical reviews. You have been hired as an Analyst for the company. You have been provided with the following three datasets, asked to carry out a detailed business intelligence of the data, and come up with some meaningful insights which will help the company to address their users in a better way.
+
+movie.csv: The file contains information related to the movies and their genres. Columns: movie id, movie title, release date, Action, Adventure, Animation, Children’s, Comedy, Crime, Documentary, Drama, Fantasy, Film-Noir, Horror, Musical, Mystery, Romance, Sci-Fi, Thriller, War, Western
+user.csv: It contains information about the users who have rated the movies. Columns: user id, age, gender, occupation, zip code
+ratings.csv: It contains information for ratings given by the users to a particular movie. Columns: user id, movie id, rating, timestamp
+
+Please produce an executive summary for the CEO and include the following insights:
+
+How many movies belong to a particular genre?
+Which movies have more than one genre?
+Which genres are most liked by the users?
+Which movies have been most preferred by the users?
+Find which movies are rated most of the times?
+Can we extract some relationship between demographic details of the users and ratings for the movies?
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+```{r}
+```
+
+```{r}
+install.packages('tidyverse')
+```
+```{r}
+library(tidyverse)
+```
+```{r}
+Movies <- read_csv('movie.csv')
+```
+```{r}
+Movies
+```
+
+ 1. How many movies belong to a particular genre?
+ # Each genre column has 1 for true, 0 for false. Summing by genre columns gives the count for each genre.
+```{r}
+genre_counts <- Movies %>% select(Action:Western) %>% summarise_all(sum)
+print("Number of movies in each genre:")
+print(genre_counts)
+```
+ 2. Which movies have more than one genre?
+ # Sum across all genre columns per movie to count how many genres each movie belongs to
+```{r}
+movies_multi_genre <- Movies %>% rowwise() %>% mutate(num_genres = sum(c_across(Action:Western))) %>% filter(num_genres >1) %>% select(`movie title`, num_genres)
+print("Movies with more than one genre:")
+print(movies_multi_genre)
+```
+
+
+```{r}
+Ratings <- read_csv('ratings.csv')
+```
+
+```{r}
+Ratings
+```
+
+3. Which genres are most liked by the users?
+# Merge ratings with movie genres
+
+```{r}
+movies_ratings <- Ratings %>% inner_join(Movies, by = 'movie id')
+```
+
+```{r}
+movies_ratings
+```
+
+
+
+# Calculate average rating for each genre
+
+```{r}
+genre_ratings <- movies_ratings %>% pivot_longer(cols = Action:Western, names_to = 'genre', values_to = 'is_genre') %>% filter(is_genre == 1) %>% group_by(genre) %>% summarise(avg_rating = mean(rating), num_ratings = n()) %>% arrange(desc(avg_rating))
+print('Genres moist liked by users(average rating):')
+print(genre_ratings)
+```
+
+
+4. Which movies have been most preferred by the users?
+# Calculate average rating and number of ratings per movie
+```{r}
+movie_preferences <- movies_ratings %>% group_by('movie id', 'movie_title') %>% group_by(avg_rating = mean(rating), num_ratings = n()) %>% arrange(desc(avg_rating))
+```
+
+```{r}
+movie_preferences
+```
+
+# Get top preferred movies (at least 50 ratings to ensure reliability)
+```{r}
+top_movies <- movie_preferences %>% filter(num_ratings > 50) %>%
+ arrange(desc(avg_rating))
+```
+```{r}
+top_movies
+```
+
+```{r}
+print("Top movies preferred by users (based on average rating with >50 ratings):")
+print(top_movies)
+```
+
+
+5. Find which movies are rated most of the times?
+# Top rated movies by number of ratings
+```{r}
+most_rated_movies <- movie_preferences %>%
+arrange(desc(num_ratings))
+```
+```{r}
+most_rated_movies
+```
+
+```{r}
+print("Movies rated most frequently:")
+print(most_rated_movies)
+```
+
+
+```{r}
+Users <- read_csv('user.csv')
+```
+
+```{r}
+Users
+```
+6. Relationship between demographics and ratings
+# Merge user information with ratings
+
+```{r}
+user_ratings <- Ratings %>% inner_join(Users, by = "user id") %>%
+inner_join(Movies, by = "movie id")
+```
+
+```{r}
+user_ratings
+```
+
+# Analyze by age group and rating
+```{r}
+age_ratings <- user_ratings %>% group_by(age) %>% summarise(avg_rating = mean(rating), num_ratings = n()) %>% arrange(desc(avg_rating))
+```
+```{r}
+age_ratings
+```
+
+
+```{r}
+print("Relationship between age and movie ratings:")
+print(age_ratings)
+```
+# Analyze by occupation and rating
+```{r}
+occupation_ratings <- user_ratings %>% group_by(occupation) %>% summarise(avg_rating = mean(rating), num_ratings = n()) %>% arrange(desc(avg_rating))
+```
+
+```{r}
+print("Relationship between occupation and movie ratings:")
+print(occupation_ratings)
+```
+# Plots for better visualization (Optional)
+
+# Plot genres by average rating
+
+```{r}
+ggplot(genre_ratings, aes(x = reorder(genre, avg_rating), y = avg_rating)) + geom_col(fill = "red") + coord_flip() + labs(title = "Average Ratings by Genre", x = "Genre", y = "Average Rating")
+```
+
+# Plot top 10 most rated movies
+```{r}
+ggplot(most_rated_movies[1:10,], aes(x = reorder('movie title', 'num_ratings'), y = num_ratings)) + geom_col(fill = "darkgreen") + coord_flip() + labs(title = "Top 10 Most Rated Movies", x = "Movie", y = "number of Ratings")
+```
+
