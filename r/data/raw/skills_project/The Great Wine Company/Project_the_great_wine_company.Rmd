@@ -1,0 +1,156 @@
+---
+title: "THE GREAT WINE COMPANY"
+author: "Obi Uba Owuasu"
+date: "2024-09-29"
+output: html_document
+---
+
+#The Great Wine Company
+
+Wine is all about people. We are a company run by wine people. We offer free UK delivery on orders over £500 and 10% off orders of 120+ bottles. We list over 130k wines from over 130 fabulous winemakers across the world in more than 44 countries. We know each of our producers personally. We want to continue to enjoy monopoly and expand into other countries where we are not yet dominant. We now require an analyst to help provide insight into our business. We would like to know which countries produce the finest quality wine (we rate high quality wine as wine with points equal or above 90). Which of our products is the most expensive and which producer makes this. Which products should we not supply anymore, with points less than 45. Please provide a report for the next meeting with the programme director, include some beautiful graphs 
+`
+
+Key Steps in the Script:
+
+    Load Libraries: Load necessary libraries for data manipulation and visualization.
+    High Quality Wines: Filter the dataset for wines with points >= 90 and summarize the results by country.
+    Most Expensive Wine: Determine the wine with the highest price and print its details.
+    Low Quality Wines: Examine wines with points < 45 and create a bar graph to visualize them.
+    Saving Graphs: Save the generated graphs as image files for use in your report.
+
+```
+
+```{r}
+```{r}
+library(tidyverse)
+```
+```{r}
+wines <- read_csv('winemag-data-130k-v2.csv')
+```
+```{r}
+# 1. Identify the countries producing wines with points >= 90
+```
+
+```{r}
+high_quality_wines <- wines %>% filter(points >= 90)
+```
+```{r}
+high_quality_wines
+```
+
+```{r}
+country_quality_summary <- high_quality_wines %>%
+  group_by(country) %>%
+  summarise(count = n(), average_points = mean(points), .groups = 'drop')
+```
+
+```{r}
+country_quality_summary
+```
+# Graphical representation for countries producing high quality wines
+
+```{r}
+ggplot(country_quality_summary, aes(x = reorder(country, -average_points), y = average_points)) +
+  geom_bar(stat = "identity", fill = "orange") +
+  labs(title = "Average Points of High Quality Wines by Country",
+       x = "Country",
+       y = "Average Points") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+```{r}
+# 2. Identify the most expensive wine and its producer
+```
+
+```{r}
+most_expensive_wine <- wines %>% filter(price == max(price, na.rm = TRUE))
+```
+```{r}
+most_expensive_wine
+```
+```{r}
+# Print the most expensive wine details
+```
+
+```{r}
+cat("Most Expensive Wine:\n")
+print(most_expensive_wine)
+```
+```{r}
+
+# 3. Identify wines with points < 45 that should not be supplied anymore
+```
+
+```{r}
+low_quality_wines <- wines %>% filter(points < 45)
+```
+```{r}
+low_quality_wines
+```
+```{r}
+# I HAD TO BRING IN THE HEAD(LOW_QUALITY_WINES) BECAUSE I HAD ISSUES WITH THE IDENTITY. THE GUIDE ON CHAT GBT FOR RUNNING THE PROGRAM CODE HIGHLIGHTED AN ERROR IN IDENTITY. THE SUGGESTED CODE HAD NAME, POINTS ANS PRODUCER,SO THE PROGRAM KEPT THROWING THE IDENTITY ERROR. I GOOGLED FOR THE POSSIBLE CAUSE OF IDENTITY PROBLEM ON THE PROGRAM AND IT WAS SUGESTED THAT (
+    Ensure you have already created the low_quality_wines DataFrame in your script with the proper filtering of wines with points less than 45 prior to executing this plotting snippet.
+    If any warnings or errors occur, make sure to check the structure of your low_quality_wines DataFrame to confirm that the name, points, and producer columns exist and contain the expected data. Use head(low_quality_wines) to inspect the first few rows of the DataFrame.
+    Don't forget to load the ggplot2 library if you haven't done so already by running library(ggplot2) before this block of code.
+). I DISCOVERED THAT NAME AND PRODUCERS WERE NOT IN MY HEADER, HENCE I CHANGED THEM INTO TASTER_NAME AND COUNTRIES RESPECTIVELY, AND MY PROGRAM RAN. I WAS REALLY EXCITED FOR THIS SOLUTION. INDEED GOOGLE IS YOUR FRIEND.
+```
+
+```{r}
+# Graphical representation for low quality wines
+```
+```{r}
+head(low_quality_wines)
+```
+
+
+```{r}
+ggplot(low_quality_wines, aes(x = reorder(taster_name, points), y = points, fill = country)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Wines with Points < 45",
+       x = "Wine Name",
+       y = "Points") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+```{r}
+ ggplot(low_quality_wines, aes(x = reorder(taster_name, points), y = points, fill = country)) +
+    geom_bar(stat = "identity") +
+    labs(title = "Wines with Points Less Than 45",
+         x = "Wine Name",
+         y = "Points") +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+    coord_flip()  # Optional: Flips the axes for better readability if there are many wines
+} else {
+  print("No wines found with points less than 45.")
+```
+#I ALSO TRIED THIS FOR POINTS LESS THAN 90
+```{r}
+low_quality_wines_practice <- wines %>% filter(points < 90)
+```
+
+```{r}
+low_quality_wines_practice
+```
+```{r}
+ggplot(low_quality_wines, aes(x = reorder(taster_name, points), y = points, fill = country)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Wines with Points < 90",
+       x = "Wine Name",
+       y = "Points") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+```{r}
+# Save graphs to files
+```
+```{r}
+ggsave("high_quality_wine_countries.png")
+```
+```{r}
+ggsave("low_quality_wines.png")
+```
+```{r}
+# Provide summary of low quality wines
+```
+```{r}
+cat("Wines to Consider Not Supplying Anymore:\n")
+print(low_quality_wines)
+```
+
