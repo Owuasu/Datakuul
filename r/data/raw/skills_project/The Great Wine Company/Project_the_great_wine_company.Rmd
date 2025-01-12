@@ -51,7 +51,7 @@ country_quality_summary
 
 ```{r}
 ggplot(country_quality_summary, aes(x = reorder(country, -average_points), y = average_points)) +
-  geom_bar(stat = "identity", fill = "orange") +
+  geom_dotplot(stat = "identity", fill = "orange") +
   labs(title = "Average Points of High Quality Wines by Country",
        x = "Country",
        y = "Average Points") +
@@ -100,6 +100,12 @@ low_quality_wines
 ```{r}
 head(low_quality_wines)
 ```
+
+
+```{r}
+library(tidyverse)
+```
+
 
 
 ```{r}

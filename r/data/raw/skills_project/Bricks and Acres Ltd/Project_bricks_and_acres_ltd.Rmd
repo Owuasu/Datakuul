@@ -1,0 +1,1055 @@
+---
+title: "BRICKS AND ACRES LTD"
+author: "Obi Uba Owuasu"
+date: "2024-12-14"
+output: html_document
+---
+
+```{r}
+# Bricks and Acres is a real estate company interested in buying and selling houses in the UK. They have obtained data from HM Land Registry indicating the median prices paid for flats and houses (detached, semi-detached and terrace) in different regions of the UK from 1995 to 2023.They have hired you to help them analyse the data to know which region(s) and what type of property they should invest in.
+```
+
+```{r}
+library(tidyverse)
+```
+```{r}
+
+```
+```{r}
+
+```
+```{r}
+library(tidyverse)
+library(readxl)
+```
+```{r}
+?read_xls
+
+```
+
+
+```{r}
+property_data_RC <- read_excel('house_data_bricks_and_acres.xlsx',sheet = '1a',skip = 2)
+head(property_data)
+```
+```{r}
+# Table 1a - Median price paid by region and country, year ending December 1995 to year ending September 2023
+
+```
+```{r}
+?readxlxs
+```
+
+```{r}
+property_data_RC
+```
+```{r}
+property_data_RCF <- property_data_RC
+```
+
+```{r}
+property_data_RCF
+```
+
+
+```{r}
+property_data_RCF <- property_data_RCF %>% pivot_longer(cols = -c(Code, Name), names_to = 'Year', values_to = 'Prices')
+```
+
+
+
+```{r}
+property_data_RCF$Year<- str_remove(property_data_RCF$Year, 'Year ending')
+```
+
+```{r}
+property_data_RCF
+```
+
+```{r}
+ggplot(property_data_RCF, aes(x = Year, y = Prices, fill = Name)) +
+  geom_col() +
+  theme_classic() + 
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1, size = 4)) +
+  labs(title = "Comparison of House Prices Across Cities by Year")
+```
+
+```{r}
+library(tidyverse)
+```
+
+
+```{r}
+ggplot(property_data_RCF, aes(x = Year, y = Prices, color = Name)) +
+  geom_bin_2d() +
+  theme_classic() + 
+  labs(title = "Comparison of House Prices Across Cities by Year") +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1, size = 4)) +
+  labs(title = "Comparison of House Prices Across Cities by Year")
+```
+
+
+```{r}
+library(tidyverse)
+```
+```{r}
+library(ggplot2)
+```
+
+
+
+```{r}
+# Line plot grouped by year
+```
+
+```{r}
+ggplot(property_data_RCF, aes(x = Year, y = Prices, color = Name)) +
+  geom_point() +
+  theme_classic() + 
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1, size = 4)) +
+  labs(title = "Comparison of House Prices Across Cities by Year")
+```
+
+
+
+```{r}
+# Table 1b - Median price paid for detached houses by region and country, year ending December 1995 to year ending September 2023
+```
+
+
+```{r}
+property_data_DH <- read_excel('house_data_bricks_and_acres.xlsx',sheet = '1b',skip = 2)
+head(property_data)
+```
+```{r}
+```
+
+```{r}
+property_data_DH
+```
+
+```{r}
+property_data_DHF <- property_data_DH
+```
+
+
+
+```{r}
+property_data_DHF <- property_data_DHF %>% pivot_longer(cols = -c(Code, Name), names_to = 'Year', values_to = 'Prices')
+```
+```{r}
+property_data_DHF
+```
+
+
+```{r}
+property_data_DHF$Year<- str_remove(property_data_DHF$Year, 'Year ending')
+```
+
+```{r}
+property_data_DHF
+```
+
+```{r}
+ggplot(property_data_DHF, aes(x = Year, y = Prices, color = Name)) +
+  geom_point() +
+  theme_light() + 
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1, size = 4)) +
+  labs(title = "Comparison of House Prices Across Cities by Year")
+```
+
+
+```{r}
+# Table 1c - Median price paid for semi-detached houses by region and country, year ending December 1995 to year ending September 2023
+```
+
+```{r}
+property_data_SD <- read_excel('house_data_bricks_and_acres.xlsx',sheet = '1c',skip = 2)
+head(property_data)
+```
+
+```{r}
+property_data_SD
+```
+
+```{r}
+property_data_SDF <- property_data_SD
+```
+
+```{r}
+property_data_SDF <- property_data_SDF %>% pivot_longer(cols = -c(Code, Name), names_to = 'Year', values_to = 'Prices')
+```
+```{r}
+property_data_SDF
+```
+
+```{r}
+property_data_SDF$Year<- str_remove(property_data_SDF$Year, 'Year ending')
+```
+
+```{r}
+property_data_SDF
+```
+
+```{r}
+ggplot(property_data_SDF, aes(x = Year, y = Prices, fill = Name)) +
+  geom_col() +
+  theme_linedraw() + 
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1, size = 4)) +
+  labs(title = "Comparison of House Prices Across Cities by Year")
+```
+
+
+
+
+```{r}
+# Table 1d - Median price paid for terraced houses by region and country, year ending December 1995 to year ending September 2023
+```
+
+
+```{r}
+property_data_TH <- read_excel('house_data_bricks_and_acres.xlsx',sheet = '1d',skip = 2)
+head(property_data)
+```
+
+```{r}
+property_data_TH
+```
+
+
+```{r}
+property_data_THF <- property_data_TH
+```
+
+```{r}
+property_data_THF <- property_data_THF %>% pivot_longer(cols = -c(Code, Name), names_to = 'Year', values_to = 'Prices')
+```
+
+
+```{r}
+property_data_THF
+```
+
+```{r}
+property_data_THF$Year<- str_remove(property_data_THF$Year, 'Year ending')
+```
+
+```{r}
+property_data_THF
+```
+
+```{r}
+ggplot(property_data_THF, aes(x = Year, y = Prices, color = Name)) +
+  geom_bin_2d() +
+  theme_grey() + 
+  labs(title = "Comparison of House Prices Across Cities by Year") +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1, size = 4)) +
+  labs(title = "Comparison of House Prices Across Cities by Year")
+```
+
+
+
+
+```{r}
+# Table 1e - Median price paid for flats/maisonettes by region and country, year ending December 1995 to year ending September 2023
+```
+
+```{r}
+library(tidyverse)
+```
+
+
+```{r}
+property_data_FM <- read_excel('house_data_bricks_and_acres.xlsx',sheet = '1e',skip = 2)
+head(property_data)
+```
+
+```{r}
+property_data_FM
+```
+
+```{r}
+property_data_FMF <- property_data_FM
+```
+
+
+```{r}
+property_data_FMF <- property_data_FMF %>% pivot_longer(cols = -c(Code, Name), names_to = 'Year', values_to = 'Prices')
+```
+
+
+```{r}
+property_data_FMF
+```
+
+```{r}
+property_data_FMF$Year<- str_remove(property_data_FMF$Year, 'Year ending')
+```
+
+
+```{r}
+property_data_FMF
+```
+
+```{r}
+ggplot(property_data_FMF, aes(x = Year, y = Prices, color = Name)) +
+  geom_col() +
+  theme_bw() + 
+  labs(title = "Comparison of House Prices Across Cities by Year") +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1, size = 4)) +
+  labs(title = "Comparison of House Prices Across Cities by Year")
+```
+
+```{r}
+install.packages('hrbrthemes')
+```
+
+```{r}
+library(hrbrthemes)
+```
+
+```{r}
+install.packages("remote")
+```
+```{r}
+library(ggplot2)
+library(hrbrthemes)
+```
+
+
+
+```{r}
+install.packages('viridis')
+```
+
+```{r}
+library(ggplot2)
+library(viridis)
+```
+
+
+```{r}
+# Libraries
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+library(forcats)
+library(hrbrthemes)
+library(viridis)
+```
+
+
+```{r}
+  ggplot(property_data_FMF, aes( x= Year, y= Prices, colour= Name)) +
+    geom_violin(width=2.1, size=0.2) +
+    theme_bw() +
+    theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1, size = 4)) +
+  labs(title = "Comparison of House Prices Across Cities by Year")
+```
+```{r}
+  ggplot(property_data_THF, aes(x=Year, y=Prices, color=Name)) +
+    geom_violin(width=2.1, size=0.2) +
+    theme_ipsum() +
+    theme_bw() +
+    theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1, size = 4)) +
+  labs(title = "Comparison of House Prices Across Cities by Year")
+```
+
+```{r}
+  ggplot(property_data_THF, aes(x=Year, y=Prices, color=Name)) +
+    geom_violin(width=2.1, size=0.2) +
+    scale_fill_viridis(discrete=TRUE) +
+    scale_color_viridis(discrete=TRUE) +
+    theme_ipsum() +
+    theme(
+      legend.position="none"
+    ) +
+    coord_flip() + # This switch X and Y axis and allows to get the horizontal version
+    xlab("Year") +
+    ylab("Prices")
+```
+
+
+
+
+```{r}
+# Table 2a - Median price paid by local authority, year ending December 1995 to year ending September 2023
+```
+
+
+```{r}
+library(readxl)
+```
+
+```{r}
+property_data_LA <- read_excel('house_data_bricks_and_acres.xlsx',sheet = '2a',skip = 2)
+head(property_data)
+```
+
+```{r}
+property_data_LA
+```
+
+```{r}
+property_data_LAF <- property_data_LA
+```
+
+```{r}
+property_data_LAF
+```
+
+
+```{r}
+property_data_LAF <- property_data_LAF %>% pivot_longer(cols = -c('Region/Country code', 'Region/Country name', 'Local authority code', 'Local authority name'), names_to = 'Year', values_to = 'Prices')
+```
+
+```{r}
+property_data_LAF
+```
+```{r}
+property_data_LAF$Year<- str_remove(property_data_LAF$Year, 'Year ending')
+```
+
+```{r}
+??string_remove
+```
+
+```{r}
+library(stringr)
+```
+
+```{r}
+property_data_LAF
+```
+```{r}
+
+```
+
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+ggplot(property_data_LAF, aes(x = Year, y = Prices, colour = 'Region/Country_name')) +
+  geom_boxplot() +
+  theme_bw() + 
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1, size = 4)) +
+  labs(title = "Comparison of House Prices Across Cities by Year")
+```
+
+```{r}
+# Table 2b - Median price paid by local authority, year ending December 1995 to year ending September 2023
+```
+
+
+```{r}
+property_data_2DH <- read_excel('house_data_bricks_and_acres.xlsx',sheet = 'detached', skip = 0)
+head(property_data)
+```
+
+```{r}
+property_data_2DH
+```
+
+```{r}
+property_data_2DHF <- property_data_2DH
+```
+
+```{r}
+property_data_2DHF
+```
+```{r}
+library(stringr)
+```
+
+```{r}
+property_data_2DHF <- property_data_2DHF %>% pivot_longer(cols = -c('Region/Country code', 'Region/Country name', 'Local authority code', 'Local authority name'), names_to = 'Year', values_to = 'Prices')
+```
+
+
+```{r}
+property_data_2DHF
+```
+
+
+```{r}
+property_data_2DHF$Year<- str_remove(property_data_2DHF$Year, 'Year ending')
+```
+
+
+```{r}
+property_data_2DHF
+```
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+ggplot(property_data_2DHF, aes(x = Year, y = Prices, colour = 'Region/Country_name')) +
+  geom_col() +
+  theme_light() + 
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1, size = 4)) +
+  labs(title = "Comparison of House Prices Across Cities by Year")
+```
+
+```{r}
+# Table 2c - Median price paid by local authority, year ending December 1995 to year ending September 2023
+```
+
+```{r}
+library(readxl)
+```
+
+
+```{r}
+property_data_2SD <- read_excel('house_data_bricks_and_acres.xlsx',sheet = 'semi_detached')
+head(property_data)
+```
+```{r}
+property_data_2SD
+```
+
+
+```{r}
+property_data_2SDF <- property_data_2SD
+```
+
+```{r}
+property_data_2SDF
+```
+
+```{r}
+property_data_2SDF <- property_data_2SDF %>% pivot_longer(cols = -c('Region/Country code', 'Region/Country name', 'Local authority code', 'Local authority name'), names_to = 'Year', values_to = 'Prices')
+```
+
+```{r}
+property_data_2SDF
+```
+```{r}
+property_data_2SDF$Year<- str_remove(property_data_2SDF$Year, 'Year ending')
+```
+
+```{r}
+property_data_2SDF
+```
+```{r}
+ggplot(property_data_2DHF, aes(x = Year, y = Prices, colour = 'Region/Country_name')) +
+  geom_col() +
+  theme_linedraw() + 
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1, size = 4)) +
+  labs(title = "Comparison of House Prices Across Cities by Year")
+```
+
+```{r}
+
+```
+
+
+```{r}
+# Table 2d - Median price paid by local authority, year ending December 1995 to year ending September 2023
+```
+
+
+```{r}
+property_data_2TH <- read_excel('house_data_bricks_and_acres.xlsx',sheet = 'semi_detached')
+head(property_data)
+```
+```{r}
+property_data_2TH
+```
+```{r}
+property_data_2THF <- property_data_2TH
+```
+
+```{r}
+property_data_2THF
+```
+```{r}
+property_data_2THF <- property_data_2THF %>% pivot_longer(cols = -c('Region/Country code', 'Region/Country name', 'Local authority code', 'Local authority name'), names_to = 'Year', values_to = 'Prices')
+```
+
+```{r}
+property_data_2THF
+```
+```{r}
+property_data_2THF$Year<- str_remove(property_data_2THF$Year, 'Year ending')
+```
+
+```{r}
+property_data_2THF
+```
+```{r}
+ggplot(property_data_2DHF, aes(x = Year, y = Prices, fill = 'Region/Country_name')) +
+  geom_col() +
+  theme_linedraw() + 
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1, size = 4)) +
+  labs(title = "Comparison of House Prices Across Cities by Year")
+```
+
+```{r}
+ggplot(property_data_2DHF, aes(x = Year, y = Prices, fill = 'Region/Country name')) +
+  geom_boxplot() +
+  theme_light() +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1)) +
+  labs(
+    title = "Distribution of House Prices by Region",
+    x = "Region/Country_name",
+    y = "House Prices"
+  )
+```
+
+
+```{r}
+# Table 2e - Median price paid for flats/maisonettes by local authority, year ending December 1995 to year ending September 2023
+```
+
+```{r}
+library(tidyverse)
+```
+
+
+```{r}
+library(readxl)
+```
+
+```{r}
+property_data_2FM <- read_excel('house_data_bricks_and_acres.xlsx',sheet = '2e',skip = 2)
+head(property_data)
+```
+```{r}
+property_data_2FM
+```
+```{r}
+property_data_2FMF <- property_data_2FM
+```
+
+```{r}
+property_data_2FMF
+```
+
+```{r}
+library(readxl)
+```
+
+
+```{r}
+library(tidyverse)
+```
+
+# Tha data ran into error as the pivot longer could not run, because the Year ending Dec 1995 and Year ending Dec 1006 could not merge due to difference in formats, therefore. i ran the understaed code to bring them to the same format
+
+```{r}
+property_data_2FMF <- property_data_2FMF %>%
+  mutate(across(starts_with("Year ending"), as.character))
+```
+
+
+```{r}
+property_data_2FMF <- property_data_2FMF %>% pivot_longer(cols = -c('Region/Country code', 'Region/Country name', 'Local authority code', 'Local authority name'), names_to = 'Year', values_to = 'Prices')
+```
+
+
+```{r}
+property_data_2FMF
+```
+
+
+
+```{r}
+property_data_2FMF$Year<- str_remove(property_data_2FMF$Year, 'Year ending')
+```
+
+
+```{r}
+property_data_2FMF
+```
+
+```{r}
+ggplot(property_data_2FMF, aes(x = Year, y = Prices, fill = 'Region/Country_name')) +
+  geom_col() +
+  theme_grey() + 
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1, size = 4)) +
+  labs(title = "Comparison of House Prices Across Cities by Year")
+```
+
+```{r}
+library(tidyverse)
+```
+
+
+
+
+
+```{r}
+ggplot(property_data_2FMF, aes(x = Year, y = Prices, color = 'Region/Country_name')) +
+  geom_bin_2d(size = 3, alpha = 0.7) +
+  theme_linedraw() +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1, size = 4))
+  labs(
+    title = "Scatter Plot of House Prices by Year",
+    x = "Year",
+    y = "House Prices",
+    color = "Region"
+  )
+
+```
+
+
+```{r}
+# Table 3a - Median price paid by county, year ending December 1995 to year ending September 2023
+```
+```{r}
+library(tidyverse)
+```
+```{r}
+library(readxl)
+```
+
+
+```{r}
+property_data_CTY <- read_excel('house_data_bricks_and_acres.xlsx',sheet = '3a',skip = 2)
+head(property_data)
+```
+```{r}
+property_data_CTY
+```
+```{r}
+property_data_CTYF <- property_data_CTY %>% pivot_longer(cols = -c('Region/Country code', 'Region/Country name', 'County/UA code', 'County/UA name'), names_to = 'Year', values_to = 'Prices')
+```
+
+```{r}
+property_data_CTYF
+```
+```{r}
+property_data_CTYF$Year<- str_remove(property_data_CTYF$Year, 'Year ending')
+```
+
+
+```{r}
+property_data_CTYF
+```
+```{r}
+ggplot(property_data_CTYF, aes(x = Year, y = Prices, fill = 'Region/Country name')) +
+  geom_point() +
+  theme_light() + 
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1, size = 4)) +
+  labs(title = "Comparison of House Prices Across Cities by Year")
+```
+```{r}
+# Table 3b - Median price paid for detached houses by county, year ending December 1995 to year ending September 2023
+```
+
+```{r}
+property_data_3DH <- read_excel('house_data_bricks_and_acres.xlsx',sheet = '3b',skip = 2)
+head(property_data)
+```
+```{r}
+property_data_3DH
+```
+```{r}
+property_data_3DHF <- property_data_3DH %>% pivot_longer(cols = -c('Region/Country code', 'Region/Country name', 'County/UA code', 'County/UA name'), names_to = 'Year', values_to = 'Prices')
+```
+
+```{r}
+property_data_3DHF
+```
+```{r}
+property_data_3DHF$Year<- str_remove(property_data_3DHF$Year, 'Year ending')
+```
+
+```{r}
+property_data_3DHF
+```
+
+```{r}
+ggplot(property_data_3DHF, aes(x = Year, y = Prices, color = 'Region/Country name')) +
+  geom_bin_2d() +
+  theme_grey() + 
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1, size = 4)) +
+  labs(title = "Comparison of House Prices Across Cities by Year")
+```
+
+```{r}
+# Table 3c - Median price paid for semi-detached houses by county, year ending December 1995 to year ending September 2023
+
+```
+```{r}
+property_data_3SD <- read_excel('house_data_bricks_and_acres.xlsx',sheet = '3b',skip = 2)
+head(property_data)
+```
+```{r}
+property_data_3SD
+```
+```{r}
+property_data_3SDF <- property_data_3SD %>% pivot_longer(cols = -c('Region/Country code', 'Region/Country name', 'County/UA code', 'County/UA name'), names_to = 'Year', values_to = 'Prices')
+```
+
+```{r}
+property_data_3SDF
+```
+```{r}
+property_data_3SDF$Year<- str_remove(property_data_3SDF$Year, 'Year ending')
+```
+
+```{r}
+property_data_3SDF
+```
+```{r}
+ggplot(property_data_3SDF, aes(x = Year, y = Prices, fill = 'Region/Country name')) +
+  geom_boxplot() +
+  theme_minimal() + 
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1, size = 4)) +
+  labs(title = "Comparison of House Prices Across Cities by Year")
+```
+```{r}
+# Table 3d - Median price paid for terraced houses by county, year ending December 1995 to year ending September 2023
+```
+```{r}
+property_data_3TH <- read_excel('house_data_bricks_and_acres.xlsx',sheet = '3b',skip = 2)
+head(property_data)
+```
+```{r}
+property_data_3TH
+```
+```{r}
+property_data_3THF <- property_data_3TH %>% pivot_longer(cols = -c('Region/Country code', 'Region/Country name', 'County/UA code', 'County/UA name'), names_to = 'Year', values_to = 'Prices')
+```
+
+```{r}
+property_data_3THF
+```
+```{r}
+property_data_3THF$Year<- str_remove(property_data_3THF$Year, 'Year ending')
+```
+
+
+```{r}
+property_data_3THF
+```
+
+```{r}
+ggplot(property_data_3THF, aes(x = Year, y = Prices, colours = 'Region/Country name')) +
+  geom_violin() +
+  theme_classic() + 
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1, size = 4)) +
+  labs(title = "Comparison of House Prices Across Cities by Year")
+```
+```{r}
+# Table 3e - Median price paid for flats/maisonettes by county, year ending December 1995 to year ending September 2023
+```
+
+```{r}
+property_data_3FM <- read_excel('house_data_bricks_and_acres.xlsx',sheet = '3e',skip = 2)
+head(property_data)
+```
+```{r}
+property_data_3FM
+```
+
+```{r}
+property_data_3FMF <- property_data_3FM %>% pivot_longer(cols = -c('Region/Country code', 'Region/Country name', 'County/UA code', 'County/UA name'), names_to = 'Year', values_to = 'Prices')
+```
+
+```{r}
+property_data_3FMF
+```
+```{r}
+property_data_3FMF$Year<- str_remove(property_data_3FMF$Year, 'Year ending')
+```
+
+```{r}
+property_data_3FMF
+```
+```{r}
+ggplot(property_data_3FMF, aes(x = Year, y = Prices, color = 'Region/Country name')) +
+  geom_boxplot() +
+  theme_grey() + 
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1, size = 4)) +
+  labs(title = "Comparison of House Prices Across Cities by Year")
+```
+
+```{r}
+# Table 4a - Median price paid by combined authorities, year ending December 1995 to year ending September 2023
+```
+
+```{r}
+property_data_CA <- read_excel('house_data_bricks_and_acres.xlsx',sheet = '4a',skip = 2)
+head(property_data)
+```
+```{r}
+property_data_CA
+```
+```{r}
+property_data_CAF <- property_data_CA %>% pivot_longer(cols = -c(Code, Name), names_to = 'Year', values_to = 'Prices')
+```
+
+```{r}
+property_data_CAF
+```
+
+```{r}
+property_data_CAF$Year<- str_remove(property_data_CAF$Year, 'Year ending')
+```
+
+```{r}
+property_data_CAF
+```
+```{r}
+ggplot(property_data_CAF, aes(x = Year, y = Prices, fill = Name)) +
+  geom_col() +
+  theme_light() + 
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1, size = 4)) +
+  labs(title = "Comparison of House Prices Across Cities by Year")
+```
+```{r}
+# Table 4b - Median price paid for detached houses by combined authorities, year ending December 1995 to year ending September 2023
+```
+
+```{r}
+property_data_4DH <- read_excel('house_data_bricks_and_acres.xlsx',sheet = '4b',skip = 2)
+head(property_data)
+```
+```{r}
+property_data_4DH
+```
+```{r}
+property_data_4DHF <- property_data_4DH %>% pivot_longer(cols = -c(Code, Name), names_to = 'Year', values_to = 'Prices')
+```
+```{r}
+property_data_4DHF
+```
+```{r}
+property_data_4DHF$Year<- str_remove(property_data_4DHF$Year, 'Year ending')
+```
+
+```{r}
+property_data_4DHF
+```
+```{r}
+ggplot(property_data_4DHF, aes(x = Year, y = Prices, color = 'Region/Country name')) +
+  geom_boxplot() +
+  theme_grey() + 
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1, size = 4)) +
+  labs(title = "Comparison of House Prices Across Cities by Year")
+```
+```{r}
+# Table 4c - Median price paid for semi-detached houses by combined authorities, year ending December 1995 to year ending September 2023
+```
+
+
+```{r}
+property_data_4SD <- read_excel('house_data_bricks_and_acres.xlsx',sheet = '4c',skip = 2)
+head(property_data)
+```
+```{r}
+property_data_4SD
+```
+```{r}
+property_data_4SDF <- property_data_4SD %>% pivot_longer(cols = -c(Code, Name), names_to = 'Year', values_to = 'Prices')
+```
+
+```{r}
+property_data_4SDF
+```
+```{r}
+property_data_4SDF$Year<- str_remove(property_data_4SDF$Year, 'Year ending')
+```
+
+```{r}
+property_data_4SDF
+```
+
+```{r}
+ggplot(property_data_4SDF, aes(x = Year, y = Prices, fill = Name)) +
+  geom_col() +
+  theme_linedraw() + 
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1, size = 4)) +
+  labs(title = "Comparison of House Prices Across Cities by Year")
+```
+
+```{r}
+# Table 4d - Median price paid for terraced houses by combined authorities, year ending December 1995 to year ending September 2023
+
+```
+
+```{r}
+property_data_4TH <- read_excel('house_data_bricks_and_acres.xlsx',sheet = '4d',skip = 2)
+head(property_data)
+```
+```{r}
+property_data_4TH
+```
+```{r}
+property_data_4THF <- property_data_4TH %>% pivot_longer(cols = -c(Code, Name), names_to = 'Year', values_to = 'Prices')
+```
+
+```{r}
+property_data_4THF
+```
+```{r}
+property_data_4THF$Year<- str_remove(property_data_4THF$Year, 'Year ending')
+```
+
+
+```{r}
+property_data_4THF
+```
+```{r}
+ggplot(property_data_4THF, aes(x = Year, y = Prices, fill = 'Name')) +
+  geom_violin() +
+  theme_gray() + 
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1, size = 4)) +
+  labs(title = "Comparison of House Prices Across Cities by Year")
+```
+```{r}
+# Table 4e - Median price paid for flats/maisonettes by combined authorities, year ending December 1995 to year ending September 2023
+```
+
+```{r}
+property_data_4FM <- read_excel('house_data_bricks_and_acres.xlsx',sheet = '4e',skip = 2)
+head(property_data)
+```
+```{r}
+property_data_4FM
+```
+
+```{r}
+property_data_4FMF <- property_data_4FM %>% pivot_longer(cols = -c(Code, Name), names_to = 'Year', values_to = 'Prices')
+```
+
+```{r}
+property_data_4FMF
+```
+
+```{r}
+property_data_4FMF$Year<- str_remove(property_data_4FMF$Year, 'Year ending')
+```
+
+
+```{r}
+property_data_4FMF
+```
+
+```{r}
+ggplot(property_data_4FMF, aes(x = Year, y = Prices, fill = 'Name')) +
+  geom_boxplot() +
+  theme_bw() + 
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1, size = 4)) +
+  labs(title = "Comparison of House Prices Across Cities by Year")
+```
+
+
+
+
+
+
+
+
+
+
